@@ -10,7 +10,7 @@ module.exports = ({ env }) => ({
             user: env('SMTP_USERNAME'),
             pass: env('SMTP_PASSWORD'),
           },
-          secure:true,
+          secure: env('SMTP_SECURE'),
           // ... any custom nodemailer options
         },
         settings: {
