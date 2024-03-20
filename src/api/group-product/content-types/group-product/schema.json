@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "group_products",
+  "info": {
+    "singularName": "group-product",
+    "pluralName": "group-products",
+    "displayName": "GroupProduct"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

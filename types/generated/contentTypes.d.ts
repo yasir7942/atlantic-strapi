@@ -871,6 +871,37 @@ export interface ApiCertificateCategoryCertificateCategory
   };
 }
 
+export interface ApiGroupProductGroupProduct extends Schema.CollectionType {
+  collectionName: 'group_products';
+  info: {
+    singularName: 'group-product';
+    pluralName: 'group-products';
+    displayName: 'GroupProduct';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Unique;
+    slug: Attribute.UID<'api::group-product.group-product', 'title'> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::group-product.group-product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::group-product.group-product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHomePageHomePage extends Schema.SingleType {
   collectionName: 'home_pages';
   info: {
@@ -1130,6 +1161,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::certificate.certificate': ApiCertificateCertificate;
       'api::certificate-category.certificate-category': ApiCertificateCategoryCertificateCategory;
+      'api::group-product.group-product': ApiGroupProductGroupProduct;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
