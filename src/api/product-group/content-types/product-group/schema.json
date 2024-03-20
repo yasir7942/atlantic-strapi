@@ -4,8 +4,7 @@
   "info": {
     "singularName": "product-group",
     "pluralName": "product-groups",
-    "displayName": "ProductGroup",
-    "description": ""
+    "displayName": "ProductGroup"
   },
   "options": {
     "draftAndPublish": false

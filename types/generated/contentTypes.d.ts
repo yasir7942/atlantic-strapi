@@ -1085,7 +1085,6 @@ export interface ApiProductGroupProductGroup extends Schema.CollectionType {
     singularName: 'product-group';
     pluralName: 'product-groups';
     displayName: 'ProductGroup';
-    description: '';
   };
   options: {
     draftAndPublish: false;
