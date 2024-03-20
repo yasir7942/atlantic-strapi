@@ -871,37 +871,6 @@ export interface ApiCertificateCategoryCertificateCategory
   };
 }
 
-export interface ApiGroupProductGroupProduct extends Schema.CollectionType {
-  collectionName: 'group_products';
-  info: {
-    singularName: 'group-product';
-    pluralName: 'group-products';
-    displayName: 'GroupProduct';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Unique;
-    slug: Attribute.UID<'api::group-product.group-product', 'title'> &
-      Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::group-product.group-product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::group-product.group-product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiHomePageHomePage extends Schema.SingleType {
   collectionName: 'home_pages';
   info: {
@@ -1053,6 +1022,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product-category.product-category'
     >;
     image: Attribute.Component<'layout.image'>;
+    product_group: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::product-group.product-group'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1116,6 +1090,7 @@ export interface ApiProductGroupProductGroup extends Schema.CollectionType {
     singularName: 'product-group';
     pluralName: 'product-groups';
     displayName: 'ProductGroup';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1124,6 +1099,11 @@ export interface ApiProductGroupProductGroup extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::product-group.product-group', 'title'> &
       Attribute.Required;
+    products: Attribute.Relation<
+      'api::product-group.product-group',
+      'oneToMany',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1161,7 +1141,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::certificate.certificate': ApiCertificateCertificate;
       'api::certificate-category.certificate-category': ApiCertificateCategoryCertificateCategory;
-      'api::group-product.group-product': ApiGroupProductGroupProduct;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
