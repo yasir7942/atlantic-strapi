@@ -883,8 +883,9 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     draftAndPublish: false;
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    slug: Attribute.UID & Attribute.Required;
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::home-page.home-page', 'title'> &
+      Attribute.Required;
     description: Attribute.Blocks;
     seo: Attribute.Component<'seo.seo-infomation'>;
     createdAt: Attribute.DateTime;
