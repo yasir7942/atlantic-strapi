@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_seo_seo_infomations",
+  "info": {
+    "displayName": "seoInfomation",
+    "icon": "search"
+  },
+  "options": {},
+  "attributes": {
+    "seoTitle": {
+      "type": "string"
+    },
+    "seoDesctiption": {
+      "type": "text"
+    },
+    "schema": {
+      "type": "text"
+    },
+    "metaTags": {
+      "type": "text"
+    },
+    "canonicalLinks": {
+      "type": "string"
+    }
+  }
+}
