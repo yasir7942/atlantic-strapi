@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product-group",
     "pluralName": "product-groups",
-    "displayName": "ProductGroup"
+    "displayName": "ProductGroup",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -20,12 +21,6 @@
       "type": "uid",
       "targetField": "title",
       "required": true
-    },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "product_group"
     }
   }
 }

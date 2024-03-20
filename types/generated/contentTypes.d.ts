@@ -1022,11 +1022,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product-category.product-category'
     >;
     image: Attribute.Component<'layout.image'>;
-    product_group: Attribute.Relation<
-      'api::product.product',
-      'manyToOne',
-      'api::product-group.product-group'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1090,6 +1085,7 @@ export interface ApiProductGroupProductGroup extends Schema.CollectionType {
     singularName: 'product-group';
     pluralName: 'product-groups';
     displayName: 'ProductGroup';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1098,11 +1094,6 @@ export interface ApiProductGroupProductGroup extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::product-group.product-group', 'title'> &
       Attribute.Required;
-    products: Attribute.Relation<
-      'api::product-group.product-group',
-      'oneToMany',
-      'api::product.product'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
