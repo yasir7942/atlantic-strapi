@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "pages",
+  "collectionName": "product_categories",
   "info": {
-    "singularName": "page",
-    "pluralName": "pages",
-    "displayName": "Page",
-    "description": ""
+    "singularName": "product-category",
+    "pluralName": "product-categories",
+    "displayName": "ProductCategory"
   },
   "options": {
     "draftAndPublish": true
@@ -25,10 +24,11 @@
     "description": {
       "type": "blocks"
     },
-    "banner": {
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.image"
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "mappedBy": "product_categories"
     }
   }
 }

@@ -788,6 +788,89 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCertificateCertificate extends Schema.CollectionType {
+  collectionName: 'certificates';
+  info: {
+    singularName: 'certificate';
+    pluralName: 'certificates';
+    displayName: 'Certificate';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::certificate.certificate', 'title'> &
+      Attribute.Required;
+    pdf: Attribute.Media & Attribute.Required;
+    certificate_category: Attribute.Relation<
+      'api::certificate.certificate',
+      'manyToOne',
+      'api::certificate-category.certificate-category'
+    >;
+    media: Attribute.Component<'layout.image'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::certificate.certificate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::certificate.certificate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCertificateCategoryCertificateCategory
+  extends Schema.CollectionType {
+  collectionName: 'certificate_categories';
+  info: {
+    singularName: 'certificate-category';
+    pluralName: 'certificate-categories';
+    displayName: 'CertificateCategory';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<
+      'api::certificate-category.certificate-category',
+      'title'
+    > &
+      Attribute.Required;
+    certificates: Attribute.Relation<
+      'api::certificate-category.certificate-category',
+      'oneToMany',
+      'api::certificate.certificate'
+    >;
+    logo: Attribute.Component<'layout.image'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::certificate-category.certificate-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::certificate-category.certificate-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHomePageHomePage extends Schema.SingleType {
   collectionName: 'home_pages';
   info: {
@@ -800,9 +883,8 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     draftAndPublish: false;
   };
   attributes: {
-    Title: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::home-page.home-page', 'Title'> &
-      Attribute.Required;
+    title: Attribute.String & Attribute.Required;
+    slug: Attribute.UID & Attribute.Required;
     description: Attribute.Blocks;
     seo: Attribute.Component<'seo.seo-infomation'>;
     createdAt: Attribute.DateTime;
@@ -837,8 +919,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required;
     description: Attribute.Blocks;
-    banner: Attribute.Media;
-    bannerWebp: Attribute.Media;
+    banner: Attribute.Component<'layout.image'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -864,8 +945,6 @@ export interface ApiPostPost extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::post.post', 'title'> & Attribute.Required;
     description: Attribute.Blocks;
-    image: Attribute.Media;
-    imageWebp: Attribute.Media;
     author: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'>;
     post_categories: Attribute.Relation<
       'api::post.post',
@@ -873,6 +952,7 @@ export interface ApiPostPost extends Schema.CollectionType {
       'api::post-category.post-category'
     >;
     seo: Attribute.Component<'seo.seo-infomation'>;
+    image: Attribute.Component<'layout.image'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -920,6 +1000,84 @@ export interface ApiPostCategoryPostCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiProductProduct extends Schema.CollectionType {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::product.product', 'title'> & Attribute.Required;
+    description: Attribute.Blocks;
+    product_categories: Attribute.Relation<
+      'api::product.product',
+      'manyToMany',
+      'api::product-category.product-category'
+    >;
+    image: Attribute.Component<'layout.image'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductCategoryProductCategory
+  extends Schema.CollectionType {
+  collectionName: 'product_categories';
+  info: {
+    singularName: 'product-category';
+    pluralName: 'product-categories';
+    displayName: 'ProductCategory';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::product-category.product-category', 'title'> &
+      Attribute.Required;
+    description: Attribute.Blocks;
+    products: Attribute.Relation<
+      'api::product-category.product-category',
+      'manyToMany',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -938,10 +1096,14 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::certificate.certificate': ApiCertificateCertificate;
+      'api::certificate-category.certificate-category': ApiCertificateCategoryCertificateCategory;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
       'api::post-category.post-category': ApiPostCategoryPostCategory;
+      'api::product.product': ApiProductProduct;
+      'api::product-category.product-category': ApiProductCategoryProductCategory;
     }
   }
 }

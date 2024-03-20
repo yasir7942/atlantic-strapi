@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_layout_images",
+  "info": {
+    "displayName": "Image",
+    "icon": "database"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "imageWebp": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

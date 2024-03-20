@@ -1,5 +1,17 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface LayoutImage extends Schema.Component {
+  collectionName: 'components_layout_images';
+  info: {
+    displayName: 'Image';
+    icon: 'database';
+  };
+  attributes: {
+    image: Attribute.Media;
+    imageWebp: Attribute.Media;
+  };
+}
+
 export interface SeoSeoInfomation extends Schema.Component {
   collectionName: 'components_seo_seo_infomations';
   info: {
@@ -18,6 +30,7 @@ export interface SeoSeoInfomation extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'layout.image': LayoutImage;
       'seo.seo-infomation': SeoSeoInfomation;
     }
   }

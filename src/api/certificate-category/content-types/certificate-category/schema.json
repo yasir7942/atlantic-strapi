@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "pages",
+  "collectionName": "certificate_categories",
   "info": {
-    "singularName": "page",
-    "pluralName": "pages",
-    "displayName": "Page",
+    "singularName": "certificate-category",
+    "pluralName": "certificate-categories",
+    "displayName": "CertificateCategory",
     "description": ""
   },
   "options": {
@@ -22,10 +22,13 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "blocks"
+    "certificates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::certificate.certificate",
+      "mappedBy": "certificate_category"
     },
-    "banner": {
+    "logo": {
       "type": "component",
       "repeatable": false,
       "component": "layout.image"
