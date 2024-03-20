@@ -35,6 +35,12 @@
       "type": "component",
       "repeatable": false,
       "component": "layout.image"
+    },
+    "product_group": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-group.product-group",
+      "inversedBy": "products"
     }
   }
 }

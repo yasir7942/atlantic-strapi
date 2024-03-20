@@ -1022,6 +1022,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product-category.product-category'
     >;
     image: Attribute.Component<'layout.image'>;
+    product_group: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::product-group.product-group'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1079,6 +1084,42 @@ export interface ApiProductCategoryProductCategory
   };
 }
 
+export interface ApiProductGroupProductGroup extends Schema.CollectionType {
+  collectionName: 'product_groups';
+  info: {
+    singularName: 'product-group';
+    pluralName: 'product-groups';
+    displayName: 'ProductGroup';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    slug: Attribute.UID<'api::product-group.product-group', 'title'> &
+      Attribute.Required;
+    products: Attribute.Relation<
+      'api::product-group.product-group',
+      'oneToMany',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::product-group.product-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::product-group.product-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1105,6 +1146,7 @@ declare module '@strapi/types' {
       'api::post-category.post-category': ApiPostCategoryPostCategory;
       'api::product.product': ApiProductProduct;
       'api::product-category.product-category': ApiProductCategoryProductCategory;
+      'api::product-group.product-group': ApiProductGroupProductGroup;
     }
   }
 }
