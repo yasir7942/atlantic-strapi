@@ -41,6 +41,9 @@
       "relation": "manyToOne",
       "target": "api::product-group.product-group",
       "inversedBy": "products"
+    },
+    "packing": {
+      "type": "string"
     }
   }
 }
