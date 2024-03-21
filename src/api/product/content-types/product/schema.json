@@ -22,9 +22,6 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "blocks"
-    },
     "product_categories": {
       "type": "relation",
       "relation": "manyToMany",
@@ -49,6 +46,13 @@
       "type": "component",
       "repeatable": false,
       "component": "seo.seo-infomation"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

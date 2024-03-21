@@ -22,9 +22,6 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "blocks"
-    },
     "banner": {
       "type": "component",
       "repeatable": false,
@@ -34,6 +31,13 @@
       "type": "component",
       "repeatable": false,
       "component": "seo.seo-infomation"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

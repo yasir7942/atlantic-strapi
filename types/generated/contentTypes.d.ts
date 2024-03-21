@@ -919,9 +919,15 @@ export interface ApiPagePage extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required;
-    description: Attribute.Blocks;
     banner: Attribute.Component<'layout.image'>;
     seo: Attribute.Component<'seo.seo-infomation'>;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -946,7 +952,6 @@ export interface ApiPostPost extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::post.post', 'title'> & Attribute.Required;
-    description: Attribute.Blocks;
     author: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'>;
     post_categories: Attribute.Relation<
       'api::post.post',
@@ -955,6 +960,13 @@ export interface ApiPostPost extends Schema.CollectionType {
     >;
     seo: Attribute.Component<'seo.seo-infomation'>;
     image: Attribute.Component<'layout.image'>;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1016,7 +1028,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::product.product', 'title'> & Attribute.Required;
-    description: Attribute.Blocks;
     product_categories: Attribute.Relation<
       'api::product.product',
       'manyToMany',
@@ -1030,6 +1041,13 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     packing: Attribute.String;
     seo: Attribute.Component<'seo.seo-infomation'>;
+    description: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
