@@ -1,17 +1,17 @@
 const path = require('path');
 
 module.exports = ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'sqlite');
+  const client = env('DATABASE_CLIENT', 'sqlite');  // change in .env
 
   const connections = {
     mysql: {
       connection: {
         connectionString: env('DATABASE_URL'),
-        host: env('DATABASE_HOST', 'localhost'),
+        host: env('DATABASE_HOST_DEV', 'localhost'),
         port: env.int('DATABASE_PORT', 3306),
-        database: env('DATABASE_NAME', 'strapi'),
-        user: env('DATABASE_USERNAME', 'strapi'),
-        password: env('DATABASE_PASSWORD', 'strapi'),
+        database: env('DATABASE_NAME_DEV', 'strapi'),
+        user: env('DATABASE_USERNAME_DEV', 'strapi'),
+        password: env('DATABASE_PASSWORD_DEV', 'strapi'),
         ssl: env.bool('DATABASE_SSL', false) && {
           key: env('DATABASE_SSL_KEY', undefined),
           cert: env('DATABASE_SSL_CERT', undefined),
@@ -24,6 +24,18 @@ module.exports = ({ env }) => {
           ),
         },
       },
+      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
+    },
+    mysql1: {
+      connection: {
+        host: env('DATABASE_HOST_DEV', '127.0.0.1'),
+        port: env.int('DATABASE_PORT_DEV', 3306),
+        database: env('DATABASE_NAME_DEV', 'strapi'),
+        user: env('DATABASE_USERNAME_DEV', 'strapi'),
+        password: env('DATABASE_PASSWORD_DEV', ''),
+        
+      },
+      
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
     },
     mysql2: {

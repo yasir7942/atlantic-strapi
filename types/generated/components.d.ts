@@ -17,6 +17,7 @@ export interface SeoSeoInfomation extends Schema.Component {
   info: {
     displayName: 'seoInfomation';
     icon: 'search';
+    description: '';
   };
   attributes: {
     seoTitle: Attribute.String;
@@ -24,6 +25,9 @@ export interface SeoSeoInfomation extends Schema.Component {
     schema: Attribute.Text;
     metaTags: Attribute.Text;
     canonicalLinks: Attribute.String;
+    preventIndexing: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
   };
 }
 

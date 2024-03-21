@@ -921,6 +921,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required;
     description: Attribute.Blocks;
     banner: Attribute.Component<'layout.image'>;
+    seo: Attribute.Component<'seo.seo-infomation'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1028,6 +1029,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::product-group.product-group'
     >;
     packing: Attribute.String;
+    seo: Attribute.Component<'seo.seo-infomation'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1053,6 +1055,7 @@ export interface ApiProductCategoryProductCategory
     singularName: 'product-category';
     pluralName: 'product-categories';
     displayName: 'ProductCategory';
+    description: '';
   };
   options: {
     draftAndPublish: true;

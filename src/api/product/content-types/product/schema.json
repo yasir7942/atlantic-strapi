@@ -44,6 +44,11 @@
     },
     "packing": {
       "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo-infomation"
     }
   }
 }
