@@ -14,10 +14,10 @@
       "type": "text"
     },
     "schema": {
-      "type": "text"
-    },
-    "metaTags": {
-      "type": "text"
+      "displayName": "SchemaList",
+      "type": "component",
+      "repeatable": true,
+      "component": "seo.schema-list"
     },
     "canonicalLinks": {
       "type": "string"

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "post-category",
     "pluralName": "post-categories",
-    "displayName": "PostCategory"
+    "displayName": "PostCategory",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -21,14 +22,14 @@
       "targetField": "title",
       "required": true
     },
-    "description": {
-      "type": "blocks"
-    },
     "posts": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::post.post",
       "mappedBy": "post_categories"
+    },
+    "description": {
+      "type": "blocks"
     }
   }
 }

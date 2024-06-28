@@ -1,0 +1,56 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_uses",
+  "info": {
+    "singularName": "contact-us",
+    "pluralName": "contact-uses",
+    "displayName": "ContactUs",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "fzcTitle": {
+      "type": "string"
+    },
+    "fzcAddress": {
+      "type": "string"
+    },
+    "fzcPhone": {
+      "type": "string"
+    },
+    "fzcFax": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "llcTitle": {
+      "type": "string"
+    },
+    "llcAddress": {
+      "type": "string"
+    },
+    "lldPhone": {
+      "type": "string"
+    },
+    "llcFax": {
+      "type": "string"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.top-banner"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo-infomation"
+    }
+  }
+}

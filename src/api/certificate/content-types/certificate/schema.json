@@ -22,7 +22,16 @@
       "targetField": "title",
       "required": true
     },
-    "pdf": {
+    "certificate_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::certificate-category.certificate-category",
+      "inversedBy": "certificates"
+    },
+    "shortName": {
+      "type": "string"
+    },
+    "certificatePdf": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -30,16 +39,12 @@
         "files"
       ]
     },
-    "certificate_category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::certificate-category.certificate-category",
-      "inversedBy": "certificates"
-    },
-    "media": {
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.image",
+    "certificateImages": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
       "required": true
     }
   }

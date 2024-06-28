@@ -30,6 +30,36 @@
       "relation": "manyToMany",
       "target": "api::product.product",
       "mappedBy": "product_categories"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo-infomation"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.top-banner"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "bImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "index": {
+      "type": "integer",
+      "unique": true
     }
   }
 }

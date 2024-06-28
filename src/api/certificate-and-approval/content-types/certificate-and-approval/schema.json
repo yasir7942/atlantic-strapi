@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "certificate_and_approvals",
+  "info": {
+    "singularName": "certificate-and-approval",
+    "pluralName": "certificate-and-approvals",
+    "displayName": "Certificate and Approval",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.top-banner"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo-infomation"
+    }
+  }
+}

@@ -22,13 +22,27 @@
       "required": true,
       "targetField": "title"
     },
-    "description": {
-      "type": "blocks"
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
       "component": "seo.seo-infomation"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.top-banner"
+    },
+    "bodyHeading1": {
+      "type": "string"
+    },
+    "bodyText1": {
+      "type": "text"
+    },
+    "bodyHeading2": {
+      "type": "string"
+    },
+    "bodyText2": {
+      "type": "text"
     }
   }
 }

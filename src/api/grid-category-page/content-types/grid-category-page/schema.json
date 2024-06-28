@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "grid_category_pages",
+  "info": {
+    "singularName": "grid-category-page",
+    "pluralName": "grid-category-pages",
+    "displayName": "gridCategoryPage"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "banner": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.top-banner"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo-infomation"
+    }
+  }
+}

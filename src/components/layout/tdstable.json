@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_layout_tdstables",
+  "info": {
+    "displayName": "tdstable",
+    "icon": "grid"
+  },
+  "options": {},
+  "attributes": {
+    "specs": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

@@ -28,31 +28,88 @@
       "target": "api::product-category.product-category",
       "inversedBy": "products"
     },
-    "image": {
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.image"
-    },
-    "product_group": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::product-group.product-group",
-      "inversedBy": "products"
-    },
     "packing": {
-      "type": "string"
+      "type": "text"
     },
     "seo": {
       "type": "component",
       "repeatable": false,
       "component": "seo.seo-infomation"
     },
+    "grade": {
+      "type": "string"
+    },
+    "api": {
+      "type": "string"
+    },
+    "acea": {
+      "type": "string"
+    },
+    "productImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "description": {
-      "type": "customField",
-      "options": {
-        "preset": "toolbar"
-      },
-      "customField": "plugin::ckeditor5.CKEditor"
+      "type": "blocks"
+    },
+    "name": {
+      "type": "string"
+    },
+    "related_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "product"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "related_products"
+    },
+    "tdsTitle1": {
+      "type": "string"
+    },
+    "tdsTitle2": {
+      "type": "string"
+    },
+    "tdsTitle3": {
+      "type": "string"
+    },
+    "tdsDescription": {
+      "type": "text"
+    },
+    "application": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.tsdlist"
+    },
+    "recommendations": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.tsdlist"
+    },
+    "tdstable": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.tdstable"
+    },
+    "benifits": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.tdstable"
+    },
+    "tdsPacking": {
+      "type": "text"
+    },
+    "productSchema": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.product-schema"
     }
   }
 }

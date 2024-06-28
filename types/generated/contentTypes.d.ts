@@ -788,6 +788,80 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAboutUsAboutUs extends Schema.SingleType {
+  collectionName: 'about_uses';
+  info: {
+    singularName: 'about-us';
+    pluralName: 'about-uses';
+    displayName: 'AboutUs';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    slug: Attribute.UID & Attribute.Required;
+    banner: Attribute.Component<'layout.top-banner'>;
+    aboutus: Attribute.Component<'layout.text-image'>;
+    ourFocus: Attribute.Text;
+    facility: Attribute.Text;
+    commitment: Attribute.Text;
+    founder: Attribute.Component<'layout.text-image'>;
+    overValues: Attribute.Component<'layout.heading-text', true>;
+    ourMission: Attribute.Component<'layout.text-image'>;
+    overVisson: Attribute.Component<'layout.text-image'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::about-us.about-us',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::about-us.about-us',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBlogPageBlogPage extends Schema.SingleType {
+  collectionName: 'blog_pages';
+  info: {
+    singularName: 'blog-page';
+    pluralName: 'blog-pages';
+    displayName: 'BlogPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    slug: Attribute.UID<'api::blog-page.blog-page', 'title'> &
+      Attribute.Required;
+    banner: Attribute.Component<'layout.top-banner'>;
+    seo: Attribute.Component<'seo.seo-infomation'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::blog-page.blog-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::blog-page.blog-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCertificateCertificate extends Schema.CollectionType {
   collectionName: 'certificates';
   info: {
@@ -803,13 +877,14 @@ export interface ApiCertificateCertificate extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::certificate.certificate', 'title'> &
       Attribute.Required;
-    pdf: Attribute.Media & Attribute.Required;
     certificate_category: Attribute.Relation<
       'api::certificate.certificate',
       'manyToOne',
       'api::certificate-category.certificate-category'
     >;
-    media: Attribute.Component<'layout.image'> & Attribute.Required;
+    shortName: Attribute.String;
+    certificatePdf: Attribute.Media & Attribute.Required;
+    certificateImages: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -821,6 +896,41 @@ export interface ApiCertificateCertificate extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::certificate.certificate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCertificateAndApprovalCertificateAndApproval
+  extends Schema.SingleType {
+  collectionName: 'certificate_and_approvals';
+  info: {
+    singularName: 'certificate-and-approval';
+    pluralName: 'certificate-and-approvals';
+    displayName: 'Certificate and Approval';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    slug: Attribute.UID;
+    banner: Attribute.Component<'layout.top-banner'>;
+    seo: Attribute.Component<'seo.seo-infomation'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::certificate-and-approval.certificate-and-approval',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::certificate-and-approval.certificate-and-approval',
       'oneToOne',
       'admin::user'
     > &
@@ -852,7 +962,7 @@ export interface ApiCertificateCategoryCertificateCategory
       'oneToMany',
       'api::certificate.certificate'
     >;
-    logo: Attribute.Component<'layout.image'>;
+    logo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -864,6 +974,79 @@ export interface ApiCertificateCategoryCertificateCategory
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::certificate-category.certificate-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContactUsContactUs extends Schema.SingleType {
+  collectionName: 'contact_uses';
+  info: {
+    singularName: 'contact-us';
+    pluralName: 'contact-uses';
+    displayName: 'ContactUs';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    fzcTitle: Attribute.String;
+    fzcAddress: Attribute.String;
+    fzcPhone: Attribute.String;
+    fzcFax: Attribute.String;
+    email: Attribute.String;
+    llcTitle: Attribute.String;
+    llcAddress: Attribute.String;
+    lldPhone: Attribute.String;
+    llcFax: Attribute.String;
+    banner: Attribute.Component<'layout.top-banner'>;
+    seo: Attribute.Component<'seo.seo-infomation'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-us.contact-us',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-us.contact-us',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGridCategoryPageGridCategoryPage extends Schema.SingleType {
+  collectionName: 'grid_category_pages';
+  info: {
+    singularName: 'grid-category-page';
+    pluralName: 'grid-category-pages';
+    displayName: 'gridCategoryPage';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String;
+    banner: Attribute.Component<'layout.top-banner'>;
+    seo: Attribute.Component<'seo.seo-infomation'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::grid-category-page.grid-category-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::grid-category-page.grid-category-page',
       'oneToOne',
       'admin::user'
     > &
@@ -886,8 +1069,12 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::home-page.home-page', 'title'> &
       Attribute.Required;
-    description: Attribute.Blocks;
     seo: Attribute.Component<'seo.seo-infomation'>;
+    banner: Attribute.Component<'layout.top-banner'>;
+    bodyHeading1: Attribute.String;
+    bodyText1: Attribute.Text;
+    bodyHeading2: Attribute.String;
+    bodyText2: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -919,7 +1106,6 @@ export interface ApiPagePage extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::page.page', 'title'> & Attribute.Required;
-    banner: Attribute.Component<'layout.image'>;
     seo: Attribute.Component<'seo.seo-infomation'>;
     description: Attribute.RichText &
       Attribute.CustomField<
@@ -928,6 +1114,7 @@ export interface ApiPagePage extends Schema.CollectionType {
           preset: 'toolbar';
         }
       >;
+    banner: Attribute.Component<'layout.top-banner'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -952,21 +1139,17 @@ export interface ApiPostPost extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::post.post', 'title'> & Attribute.Required;
-    author: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'>;
     post_categories: Attribute.Relation<
       'api::post.post',
       'manyToMany',
       'api::post-category.post-category'
     >;
     seo: Attribute.Component<'seo.seo-infomation'>;
-    image: Attribute.Component<'layout.image'>;
-    description: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'toolbar';
-        }
-      >;
+    description: Attribute.Blocks;
+    featureImage: Attribute.Media & Attribute.Required;
+    PostDate: Attribute.Date &
+      Attribute.Required &
+      Attribute.DefaultTo<'2024-05-15'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -983,6 +1166,7 @@ export interface ApiPostCategoryPostCategory extends Schema.CollectionType {
     singularName: 'post-category';
     pluralName: 'post-categories';
     displayName: 'PostCategory';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -991,12 +1175,12 @@ export interface ApiPostCategoryPostCategory extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::post-category.post-category', 'title'> &
       Attribute.Required;
-    description: Attribute.Blocks;
     posts: Attribute.Relation<
       'api::post-category.post-category',
       'manyToMany',
       'api::post.post'
     >;
+    description: Attribute.Blocks;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1033,21 +1217,34 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToMany',
       'api::product-category.product-category'
     >;
-    image: Attribute.Component<'layout.image'>;
-    product_group: Attribute.Relation<
+    packing: Attribute.Text;
+    seo: Attribute.Component<'seo.seo-infomation'>;
+    grade: Attribute.String;
+    api: Attribute.String;
+    acea: Attribute.String;
+    productImage: Attribute.Media;
+    description: Attribute.Blocks;
+    name: Attribute.String;
+    related_products: Attribute.Relation<
+      'api::product.product',
+      'oneToMany',
+      'api::product.product'
+    >;
+    product: Attribute.Relation<
       'api::product.product',
       'manyToOne',
-      'api::product-group.product-group'
+      'api::product.product'
     >;
-    packing: Attribute.String;
-    seo: Attribute.Component<'seo.seo-infomation'>;
-    description: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'toolbar';
-        }
-      >;
+    tdsTitle1: Attribute.String;
+    tdsTitle2: Attribute.String;
+    tdsTitle3: Attribute.String;
+    tdsDescription: Attribute.Text;
+    application: Attribute.Component<'layout.tsdlist', true>;
+    recommendations: Attribute.Component<'layout.tsdlist', true>;
+    tdstable: Attribute.Component<'layout.tdstable', true>;
+    benifits: Attribute.Component<'layout.tdstable', true>;
+    tdsPacking: Attribute.Text;
+    productSchema: Attribute.Component<'seo.product-schema'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1088,6 +1285,11 @@ export interface ApiProductCategoryProductCategory
       'manyToMany',
       'api::product.product'
     >;
+    seo: Attribute.Component<'seo.seo-infomation'>;
+    banner: Attribute.Component<'layout.top-banner'>;
+    image: Attribute.Media & Attribute.Required;
+    bImage: Attribute.Media & Attribute.Required;
+    index: Attribute.Integer & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1121,11 +1323,6 @@ export interface ApiProductGroupProductGroup extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     slug: Attribute.UID<'api::product-group.product-group', 'title'> &
       Attribute.Required;
-    products: Attribute.Relation<
-      'api::product-group.product-group',
-      'oneToMany',
-      'api::product.product'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1136,6 +1333,39 @@ export interface ApiProductGroupProductGroup extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product-group.product-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSearchPageSearchPage extends Schema.SingleType {
+  collectionName: 'search_pages';
+  info: {
+    singularName: 'search-page';
+    pluralName: 'search-pages';
+    displayName: 'SearchPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    seo: Attribute.Component<'seo.seo-infomation'>;
+    banner: Attribute.Component<'layout.top-banner'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::search-page.search-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::search-page.search-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1161,8 +1391,13 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::about-us.about-us': ApiAboutUsAboutUs;
+      'api::blog-page.blog-page': ApiBlogPageBlogPage;
       'api::certificate.certificate': ApiCertificateCertificate;
+      'api::certificate-and-approval.certificate-and-approval': ApiCertificateAndApprovalCertificateAndApproval;
       'api::certificate-category.certificate-category': ApiCertificateCategoryCertificateCategory;
+      'api::contact-us.contact-us': ApiContactUsContactUs;
+      'api::grid-category-page.grid-category-page': ApiGridCategoryPageGridCategoryPage;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
@@ -1170,6 +1405,7 @@ declare module '@strapi/types' {
       'api::product.product': ApiProductProduct;
       'api::product-category.product-category': ApiProductCategoryProductCategory;
       'api::product-group.product-group': ApiProductGroupProductGroup;
+      'api::search-page.search-page': ApiSearchPageSearchPage;
     }
   }
 }
