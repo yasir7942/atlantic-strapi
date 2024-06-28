@@ -884,7 +884,7 @@ export interface ApiCertificateCertificate extends Schema.CollectionType {
     >;
     shortName: Attribute.String;
     certificatePdf: Attribute.Media & Attribute.Required;
-    certificateImages: Attribute.Media & Attribute.Required;
+    certificateImages: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1352,7 +1352,7 @@ export interface ApiSearchPageSearchPage extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     seo: Attribute.Component<'seo.seo-infomation'>;
     banner: Attribute.Component<'layout.top-banner'>;
     createdAt: Attribute.DateTime;
