@@ -37,10 +37,13 @@
       "component": "seo.seo-infomation"
     },
     "grade": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "api": {
-      "type": "string"
+      "type": "string",
+      "unique": false,
+      "required": true
     },
     "acea": {
       "type": "string"
@@ -48,13 +51,14 @@
     "productImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "description": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "name": {
       "type": "string"
@@ -72,16 +76,20 @@
       "inversedBy": "related_products"
     },
     "tdsTitle1": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "tdsTitle2": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "tdsTitle3": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "tdsDescription": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "application": {
       "type": "component",

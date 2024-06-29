@@ -1219,11 +1219,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     packing: Attribute.Text;
     seo: Attribute.Component<'seo.seo-infomation'>;
-    grade: Attribute.String;
-    api: Attribute.String;
+    grade: Attribute.String & Attribute.Required;
+    api: Attribute.String & Attribute.Required;
     acea: Attribute.String;
-    productImage: Attribute.Media;
-    description: Attribute.Blocks;
+    productImage: Attribute.Media & Attribute.Required;
+    description: Attribute.Blocks & Attribute.Required;
     name: Attribute.String;
     related_products: Attribute.Relation<
       'api::product.product',
@@ -1235,10 +1235,10 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'api::product.product'
     >;
-    tdsTitle1: Attribute.String;
-    tdsTitle2: Attribute.String;
-    tdsTitle3: Attribute.String;
-    tdsDescription: Attribute.Text;
+    tdsTitle1: Attribute.String & Attribute.Required;
+    tdsTitle2: Attribute.String & Attribute.Required;
+    tdsTitle3: Attribute.String & Attribute.Required;
+    tdsDescription: Attribute.Text & Attribute.Required;
     application: Attribute.Component<'layout.tsdlist', true>;
     recommendations: Attribute.Component<'layout.tsdlist', true>;
     tdstable: Attribute.Component<'layout.tdstable', true>;
