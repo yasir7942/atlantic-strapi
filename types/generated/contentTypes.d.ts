@@ -1340,6 +1340,42 @@ export interface ApiProductGroupProductGroup extends Schema.CollectionType {
   };
 }
 
+export interface ApiRedirectionUrlRedirectionUrl extends Schema.CollectionType {
+  collectionName: 'redirection_urls';
+  info: {
+    singularName: 'redirection-url';
+    pluralName: 'redirection-urls';
+    displayName: 'RedirectionUrl';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    source: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 2;
+      }>;
+    destination: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::redirection-url.redirection-url',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::redirection-url.redirection-url',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSearchPageSearchPage extends Schema.SingleType {
   collectionName: 'search_pages';
   info: {
@@ -1405,6 +1441,7 @@ declare module '@strapi/types' {
       'api::product.product': ApiProductProduct;
       'api::product-category.product-category': ApiProductCategoryProductCategory;
       'api::product-group.product-group': ApiProductGroupProductGroup;
+      'api::redirection-url.redirection-url': ApiRedirectionUrlRedirectionUrl;
       'api::search-page.search-page': ApiSearchPageSearchPage;
     }
   }
