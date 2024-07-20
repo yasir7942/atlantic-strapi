@@ -15,8 +15,8 @@
     "source": {
       "type": "string",
       "required": true,
-      "unique": false,
-      "minLength": 2
+      "unique": true,
+      "minLength": 1
     },
     "destination": {
       "type": "string",

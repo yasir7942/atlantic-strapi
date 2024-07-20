@@ -1354,8 +1354,9 @@ export interface ApiRedirectionUrlRedirectionUrl extends Schema.CollectionType {
   attributes: {
     source: Attribute.String &
       Attribute.Required &
+      Attribute.Unique &
       Attribute.SetMinMaxLength<{
-        minLength: 2;
+        minLength: 1;
       }>;
     destination: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
