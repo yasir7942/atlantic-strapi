@@ -810,6 +810,7 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
     overValues: Attribute.Component<'layout.heading-text', true>;
     ourMission: Attribute.Component<'layout.text-image'>;
     overVisson: Attribute.Component<'layout.text-image'>;
+    seo: Attribute.Component<'seo.seo-infomation'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

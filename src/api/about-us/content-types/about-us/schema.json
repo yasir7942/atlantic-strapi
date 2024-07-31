@@ -55,6 +55,11 @@
       "type": "component",
       "repeatable": false,
       "component": "layout.text-image"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "seo.seo-infomation"
     }
   }
 }
