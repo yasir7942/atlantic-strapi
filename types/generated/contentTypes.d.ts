@@ -1291,6 +1291,8 @@ export interface ApiProductCategoryProductCategory
     image: Attribute.Media & Attribute.Required;
     bImage: Attribute.Media & Attribute.Required;
     index: Attribute.Integer & Attribute.Unique;
+    icon: Attribute.Media;
+    featured: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

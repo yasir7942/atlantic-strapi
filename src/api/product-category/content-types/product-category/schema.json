@@ -60,6 +60,17 @@
     "index": {
       "type": "integer",
       "unique": true
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
