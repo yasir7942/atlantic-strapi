@@ -61,7 +61,9 @@
       "required": true
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "placeholder": "Short Product Name",
+      "description": "Like: Atlantic syntectic 10w-40"
     },
     "related_products": {
       "type": "relation",
@@ -77,19 +79,19 @@
     },
     "tdsTitle1": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "tdsTitle2": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "tdsTitle3": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "tdsDescription": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "application": {
       "type": "component",
@@ -118,6 +120,26 @@
       "type": "component",
       "repeatable": false,
       "component": "seo.product-schema"
+    },
+    "msds_register": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::msds-register.msds-register",
+      "inversedBy": "product"
+    },
+    "TDSFile": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "MSDSFile": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

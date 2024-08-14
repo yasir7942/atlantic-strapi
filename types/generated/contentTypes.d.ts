@@ -1093,6 +1093,42 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
   };
 }
 
+export interface ApiMsdsRegisterMsdsRegister extends Schema.CollectionType {
+  collectionName: 'msds_registers';
+  info: {
+    singularName: 'msds-register';
+    pluralName: 'msds-registers';
+    displayName: 'MSDS Register';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    fileName: Attribute.String & Attribute.Required & Attribute.Unique;
+    product: Attribute.Relation<
+      'api::msds-register.msds-register',
+      'oneToOne',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::msds-register.msds-register',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::msds-register.msds-register',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPagePage extends Schema.CollectionType {
   collectionName: 'pages';
   info: {
@@ -1236,16 +1272,23 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'api::product.product'
     >;
-    tdsTitle1: Attribute.String & Attribute.Required;
-    tdsTitle2: Attribute.String & Attribute.Required;
-    tdsTitle3: Attribute.String & Attribute.Required;
-    tdsDescription: Attribute.Text & Attribute.Required;
+    tdsTitle1: Attribute.String;
+    tdsTitle2: Attribute.String;
+    tdsTitle3: Attribute.String;
+    tdsDescription: Attribute.Text;
     application: Attribute.Component<'layout.tsdlist', true>;
     recommendations: Attribute.Component<'layout.tsdlist', true>;
     tdstable: Attribute.Component<'layout.tdstable', true>;
     benifits: Attribute.Component<'layout.tdstable', true>;
     tdsPacking: Attribute.Text;
     productSchema: Attribute.Component<'seo.product-schema'>;
+    msds_register: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::msds-register.msds-register'
+    >;
+    TDSFile: Attribute.Media;
+    MSDSFile: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1439,6 +1482,7 @@ declare module '@strapi/types' {
       'api::contact-us.contact-us': ApiContactUsContactUs;
       'api::grid-category-page.grid-category-page': ApiGridCategoryPageGridCategoryPage;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::msds-register.msds-register': ApiMsdsRegisterMsdsRegister;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
       'api::post-category.post-category': ApiPostCategoryPostCategory;
