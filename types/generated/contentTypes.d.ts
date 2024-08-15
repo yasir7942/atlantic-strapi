@@ -1256,12 +1256,12 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     packing: Attribute.Text;
     seo: Attribute.Component<'seo.seo-infomation'>;
-    grade: Attribute.String & Attribute.Required;
-    api: Attribute.String & Attribute.Required;
+    grade: Attribute.String;
+    api: Attribute.String;
     acea: Attribute.String;
     productImage: Attribute.Media & Attribute.Required;
     description: Attribute.Blocks & Attribute.Required;
-    name: Attribute.String;
+    name: Attribute.String & Attribute.Required;
     related_products: Attribute.Relation<
       'api::product.product',
       'oneToMany',

@@ -38,12 +38,12 @@
     },
     "grade": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "api": {
       "type": "string",
       "unique": false,
-      "required": true
+      "required": false
     },
     "acea": {
       "type": "string"
@@ -63,7 +63,8 @@
     "name": {
       "type": "string",
       "placeholder": "Short Product Name",
-      "description": "Like: Atlantic syntectic 10w-40"
+      "description": "Like: Atlantic syntectic 10w-40",
+      "required": true
     },
     "related_products": {
       "type": "relation",
@@ -128,18 +129,20 @@
       "inversedBy": "product"
     },
     "TDSFile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "MSDSFile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }
