@@ -1,79 +1,48 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface LayoutHeadingText extends Schema.Component {
-  collectionName: 'components_layout_heading_texts';
+export interface SeoSeoInfomation extends Schema.Component {
+  collectionName: 'components_seo_seo_infomations';
   info: {
-    displayName: 'HeadingText';
-    icon: 'filter';
+    displayName: 'seoInfomation';
+    icon: 'search';
     description: '';
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
+    seoTitle: Attribute.String;
+    seoDesctiption: Attribute.Text;
+    schema: Attribute.Component<'seo.schema-list', true>;
+    canonicalLinks: Attribute.String;
+    preventIndexing: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
   };
 }
 
-export interface LayoutImage extends Schema.Component {
-  collectionName: 'components_layout_images';
+export interface SeoSchemaList extends Schema.Component {
+  collectionName: 'components_seo_schema_lists';
   info: {
-    displayName: 'Image';
-    icon: 'database';
+    displayName: 'SchemaList';
+    icon: 'server';
   };
   attributes: {
-    image: Attribute.Media;
-    imageWebp: Attribute.Media;
+    name: Attribute.String;
+    code: Attribute.Text;
   };
 }
 
-export interface LayoutTdstable extends Schema.Component {
-  collectionName: 'components_layout_tdstables';
+export interface SeoProductSchema extends Schema.Component {
+  collectionName: 'components_seo_product_schemas';
   info: {
-    displayName: 'tdstable';
-    icon: 'grid';
-  };
-  attributes: {
-    specs: Attribute.String;
-    value: Attribute.String;
-  };
-}
-
-export interface LayoutTextImage extends Schema.Component {
-  collectionName: 'components_layout_text_images';
-  info: {
-    displayName: 'TextImage';
-    icon: 'picture';
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Blocks;
-    image: Attribute.Media;
-  };
-}
-
-export interface LayoutTopBanner extends Schema.Component {
-  collectionName: 'components_layout_top_banners';
-  info: {
-    displayName: 'TopBanner';
-    icon: 'play';
+    displayName: 'productSchema';
+    icon: 'doctor';
     description: '';
   };
   attributes: {
-    title: Attribute.String;
-    subTitle: Attribute.String;
-    webBanner: Attribute.Media;
-    mobileBanner: Attribute.Media;
-  };
-}
-
-export interface LayoutTsdlist extends Schema.Component {
-  collectionName: 'components_layout_tsdlists';
-  info: {
-    displayName: 'tsdlist';
-    icon: 'bulletList';
-    description: '';
-  };
-  attributes: {
-    listText: Attribute.Text;
+    sku: Attribute.String;
+    gtin8: Attribute.String;
+    mpn: Attribute.String;
+    reviews: Attribute.Component<'seo.product-review', true>;
+    offerCount: Attribute.Integer;
   };
 }
 
@@ -100,65 +69,96 @@ export interface SeoProductReview extends Schema.Component {
   };
 }
 
-export interface SeoProductSchema extends Schema.Component {
-  collectionName: 'components_seo_product_schemas';
+export interface LayoutTsdlist extends Schema.Component {
+  collectionName: 'components_layout_tsdlists';
   info: {
-    displayName: 'productSchema';
-    icon: 'doctor';
+    displayName: 'tsdlist';
+    icon: 'bulletList';
     description: '';
   };
   attributes: {
-    sku: Attribute.String;
-    gtin8: Attribute.String;
-    mpn: Attribute.String;
-    reviews: Attribute.Component<'seo.product-review', true>;
-    offerCount: Attribute.Integer;
+    listText: Attribute.Text;
   };
 }
 
-export interface SeoSchemaList extends Schema.Component {
-  collectionName: 'components_seo_schema_lists';
+export interface LayoutTopBanner extends Schema.Component {
+  collectionName: 'components_layout_top_banners';
   info: {
-    displayName: 'SchemaList';
-    icon: 'server';
-  };
-  attributes: {
-    name: Attribute.String;
-    code: Attribute.Text;
-  };
-}
-
-export interface SeoSeoInfomation extends Schema.Component {
-  collectionName: 'components_seo_seo_infomations';
-  info: {
-    displayName: 'seoInfomation';
-    icon: 'search';
+    displayName: 'TopBanner';
+    icon: 'play';
     description: '';
   };
   attributes: {
-    seoTitle: Attribute.String;
-    seoDesctiption: Attribute.Text;
-    schema: Attribute.Component<'seo.schema-list', true>;
-    canonicalLinks: Attribute.String;
-    preventIndexing: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
+    title: Attribute.String;
+    subTitle: Attribute.String;
+    webBanner: Attribute.Media<'images'>;
+    mobileBanner: Attribute.Media<'images'>;
+  };
+}
+
+export interface LayoutTextImage extends Schema.Component {
+  collectionName: 'components_layout_text_images';
+  info: {
+    displayName: 'TextImage';
+    icon: 'picture';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Blocks;
+    image: Attribute.Media<'images' | 'videos'>;
+  };
+}
+
+export interface LayoutTdstable extends Schema.Component {
+  collectionName: 'components_layout_tdstables';
+  info: {
+    displayName: 'tdstable';
+    icon: 'grid';
+  };
+  attributes: {
+    specs: Attribute.String;
+    value: Attribute.String;
+  };
+}
+
+export interface LayoutImage extends Schema.Component {
+  collectionName: 'components_layout_images';
+  info: {
+    displayName: 'Image';
+    icon: 'database';
+  };
+  attributes: {
+    image: Attribute.Media<'images'>;
+    imageWebp: Attribute.Media<'images'>;
+  };
+}
+
+export interface LayoutHeadingText extends Schema.Component {
+  collectionName: 'components_layout_heading_texts';
+  info: {
+    displayName: 'HeadingText';
+    icon: 'filter';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
   };
 }
 
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'layout.heading-text': LayoutHeadingText;
-      'layout.image': LayoutImage;
-      'layout.tdstable': LayoutTdstable;
-      'layout.text-image': LayoutTextImage;
-      'layout.top-banner': LayoutTopBanner;
-      'layout.tsdlist': LayoutTsdlist;
-      'seo.product-review': SeoProductReview;
-      'seo.product-schema': SeoProductSchema;
-      'seo.schema-list': SeoSchemaList;
       'seo.seo-infomation': SeoSeoInfomation;
+      'seo.schema-list': SeoSchemaList;
+      'seo.product-schema': SeoProductSchema;
+      'seo.product-review': SeoProductReview;
+      'layout.tsdlist': LayoutTsdlist;
+      'layout.top-banner': LayoutTopBanner;
+      'layout.text-image': LayoutTextImage;
+      'layout.tdstable': LayoutTdstable;
+      'layout.image': LayoutImage;
+      'layout.heading-text': LayoutHeadingText;
     }
   }
 }

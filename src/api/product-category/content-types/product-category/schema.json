@@ -25,12 +25,6 @@
     "description": {
       "type": "blocks"
     },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product",
-      "mappedBy": "product_categories"
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
@@ -62,15 +56,34 @@
       "unique": true
     },
     "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "featured": {
       "type": "boolean",
       "default": false
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "mappedBy": "product_categories"
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-category.product-category",
+      "inversedBy": "child"
+    },
+    "child": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-category.product-category",
+      "mappedBy": "parent"
     }
   }
 }

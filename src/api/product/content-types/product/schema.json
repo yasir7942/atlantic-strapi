@@ -51,7 +51,7 @@
     "productImage": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
@@ -78,22 +78,6 @@
       "target": "api::product.product",
       "inversedBy": "related_products"
     },
-    "tdsTitle1": {
-      "type": "string",
-      "required": false
-    },
-    "tdsTitle2": {
-      "type": "string",
-      "required": false
-    },
-    "tdsTitle3": {
-      "type": "string",
-      "required": false
-    },
-    "tdsDescription": {
-      "type": "text",
-      "required": false
-    },
     "application": {
       "type": "component",
       "repeatable": true,
@@ -104,29 +88,15 @@
       "repeatable": true,
       "component": "layout.tsdlist"
     },
-    "tdstable": {
-      "type": "component",
-      "repeatable": true,
-      "component": "layout.tdstable"
-    },
     "benifits": {
       "type": "component",
       "repeatable": true,
       "component": "layout.tdstable"
     },
-    "tdsPacking": {
-      "type": "text"
-    },
     "productSchema": {
       "type": "component",
       "repeatable": false,
       "component": "seo.product-schema"
-    },
-    "msds_register": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::msds-register.msds-register",
-      "inversedBy": "product"
     },
     "TDSFile": {
       "type": "media",
@@ -143,6 +113,12 @@
       "allowedTypes": [
         "files"
       ]
+    },
+    "certificates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::certificate.certificate",
+      "mappedBy": "product"
     }
   }
 }

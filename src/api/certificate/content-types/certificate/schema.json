@@ -46,6 +46,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "certificates"
     }
   }
 }

@@ -51,6 +51,11 @@
       "type": "component",
       "repeatable": false,
       "component": "seo.seo-infomation"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

@@ -25,6 +25,11 @@
       "type": "component",
       "repeatable": false,
       "component": "layout.top-banner"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

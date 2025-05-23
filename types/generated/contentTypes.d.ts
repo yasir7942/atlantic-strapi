@@ -884,8 +884,13 @@ export interface ApiCertificateCertificate extends Schema.CollectionType {
       'api::certificate-category.certificate-category'
     >;
     shortName: Attribute.String;
-    certificatePdf: Attribute.Media & Attribute.Required;
-    certificateImages: Attribute.Media;
+    certificatePdf: Attribute.Media<'files'> & Attribute.Required;
+    certificateImages: Attribute.Media<'images'>;
+    product: Attribute.Relation<
+      'api::certificate.certificate',
+      'manyToOne',
+      'api::product.product'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -963,7 +968,7 @@ export interface ApiCertificateCategoryCertificateCategory
       'oneToMany',
       'api::certificate.certificate'
     >;
-    logo: Attribute.Media;
+    logo: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1006,6 +1011,8 @@ export interface ApiContactUsContactUs extends Schema.SingleType {
     llcFax: Attribute.String;
     banner: Attribute.Component<'layout.top-banner'>;
     seo: Attribute.Component<'seo.seo-infomation'>;
+    slug: Attribute.UID<'api::contact-us.contact-us', 'title'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1030,6 +1037,7 @@ export interface ApiGridCategoryPageGridCategoryPage extends Schema.SingleType {
     singularName: 'grid-category-page';
     pluralName: 'grid-category-pages';
     displayName: 'gridCategoryPage';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -1038,6 +1046,8 @@ export interface ApiGridCategoryPageGridCategoryPage extends Schema.SingleType {
     title: Attribute.String;
     banner: Attribute.Component<'layout.top-banner'>;
     seo: Attribute.Component<'seo.seo-infomation'>;
+    slug: Attribute.UID<'api::grid-category-page.grid-category-page', 'title'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1086,42 +1096,6 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::home-page.home-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMsdsRegisterMsdsRegister extends Schema.CollectionType {
-  collectionName: 'msds_registers';
-  info: {
-    singularName: 'msds-register';
-    pluralName: 'msds-registers';
-    displayName: 'MSDS Register';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String & Attribute.Required & Attribute.Unique;
-    fileName: Attribute.String & Attribute.Required & Attribute.Unique;
-    product: Attribute.Relation<
-      'api::msds-register.msds-register',
-      'oneToOne',
-      'api::product.product'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::msds-register.msds-register',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::msds-register.msds-register',
       'oneToOne',
       'admin::user'
     > &
@@ -1183,7 +1157,7 @@ export interface ApiPostPost extends Schema.CollectionType {
     >;
     seo: Attribute.Component<'seo.seo-infomation'>;
     description: Attribute.Blocks;
-    featureImage: Attribute.Media & Attribute.Required;
+    featureImage: Attribute.Media<'images' | 'videos'> & Attribute.Required;
     PostDate: Attribute.Date &
       Attribute.Required &
       Attribute.DefaultTo<'2024-05-15'>;
@@ -1259,7 +1233,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     grade: Attribute.String;
     api: Attribute.String;
     acea: Attribute.String;
-    productImage: Attribute.Media & Attribute.Required;
+    productImage: Attribute.Media<'images'>;
     description: Attribute.Blocks & Attribute.Required;
     name: Attribute.String & Attribute.Required;
     related_products: Attribute.Relation<
@@ -1272,23 +1246,17 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'manyToOne',
       'api::product.product'
     >;
-    tdsTitle1: Attribute.String;
-    tdsTitle2: Attribute.String;
-    tdsTitle3: Attribute.String;
-    tdsDescription: Attribute.Text;
     application: Attribute.Component<'layout.tsdlist', true>;
     recommendations: Attribute.Component<'layout.tsdlist', true>;
-    tdstable: Attribute.Component<'layout.tdstable', true>;
     benifits: Attribute.Component<'layout.tdstable', true>;
-    tdsPacking: Attribute.Text;
     productSchema: Attribute.Component<'seo.product-schema'>;
-    msds_register: Attribute.Relation<
+    TDSFile: Attribute.Media<'files'>;
+    MSDSFile: Attribute.Media<'files'>;
+    certificates: Attribute.Relation<
       'api::product.product',
-      'oneToOne',
-      'api::msds-register.msds-register'
+      'oneToMany',
+      'api::certificate.certificate'
     >;
-    TDSFile: Attribute.Media;
-    MSDSFile: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1324,18 +1292,28 @@ export interface ApiProductCategoryProductCategory
     slug: Attribute.UID<'api::product-category.product-category', 'title'> &
       Attribute.Required;
     description: Attribute.Blocks;
+    seo: Attribute.Component<'seo.seo-infomation'>;
+    banner: Attribute.Component<'layout.top-banner'>;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    bImage: Attribute.Media<'images'> & Attribute.Required;
+    index: Attribute.Integer & Attribute.Unique;
+    icon: Attribute.Media<'images'>;
+    featured: Attribute.Boolean & Attribute.DefaultTo<false>;
     products: Attribute.Relation<
       'api::product-category.product-category',
       'manyToMany',
       'api::product.product'
     >;
-    seo: Attribute.Component<'seo.seo-infomation'>;
-    banner: Attribute.Component<'layout.top-banner'>;
-    image: Attribute.Media & Attribute.Required;
-    bImage: Attribute.Media & Attribute.Required;
-    index: Attribute.Integer & Attribute.Unique;
-    icon: Attribute.Media;
-    featured: Attribute.Boolean & Attribute.DefaultTo<false>;
+    parent: Attribute.Relation<
+      'api::product-category.product-category',
+      'manyToOne',
+      'api::product-category.product-category'
+    >;
+    child: Attribute.Relation<
+      'api::product-category.product-category',
+      'oneToMany',
+      'api::product-category.product-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1438,6 +1416,8 @@ export interface ApiSearchPageSearchPage extends Schema.SingleType {
     title: Attribute.String & Attribute.Required;
     seo: Attribute.Component<'seo.seo-infomation'>;
     banner: Attribute.Component<'layout.top-banner'>;
+    slug: Attribute.UID<'api::search-page.search-page', 'title'> &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1482,7 +1462,6 @@ declare module '@strapi/types' {
       'api::contact-us.contact-us': ApiContactUsContactUs;
       'api::grid-category-page.grid-category-page': ApiGridCategoryPageGridCategoryPage;
       'api::home-page.home-page': ApiHomePageHomePage;
-      'api::msds-register.msds-register': ApiMsdsRegisterMsdsRegister;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
       'api::post-category.post-category': ApiPostCategoryPostCategory;
