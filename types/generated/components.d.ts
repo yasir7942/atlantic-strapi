@@ -146,6 +146,18 @@ export interface LayoutHeadingText extends Schema.Component {
   };
 }
 
+export interface LayoutFaq extends Schema.Component {
+  collectionName: 'components_layout_faqs';
+  info: {
+    displayName: 'faq';
+    icon: 'stack';
+  };
+  attributes: {
+    question: Attribute.Text;
+    answer: Attribute.Text;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -159,6 +171,7 @@ declare module '@strapi/types' {
       'layout.tdstable': LayoutTdstable;
       'layout.image': LayoutImage;
       'layout.heading-text': LayoutHeadingText;
+      'layout.faq': LayoutFaq;
     }
   }
 }

@@ -84,6 +84,20 @@
       "relation": "oneToMany",
       "target": "api::product-category.product-category",
       "mappedBy": "parent"
+    },
+    "categoryTitle": {
+      "type": "text"
+    },
+    "categoryDescription": {
+      "type": "blocks"
+    },
+    "readMore": {
+      "type": "blocks"
+    },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.faq"
     }
   }
 }

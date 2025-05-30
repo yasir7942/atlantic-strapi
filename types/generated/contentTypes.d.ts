@@ -1281,6 +1281,10 @@ export interface ApiProductCategoryProductCategory
       'oneToMany',
       'api::product-category.product-category'
     >;
+    categoryTitle: Attribute.Text;
+    categoryDescription: Attribute.Blocks;
+    readMore: Attribute.Blocks;
+    faq: Attribute.Component<'layout.faq', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

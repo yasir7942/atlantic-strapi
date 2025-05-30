@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_layout_faqs",
+  "info": {
+    "displayName": "faq",
+    "icon": "stack"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "text"
+    },
+    "answer": {
+      "type": "text"
+    }
+  }
+}
