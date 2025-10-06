@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_seo_social_medias",
+  "info": {
+    "displayName": "socialMedia",
+    "icon": "magic"
+  },
+  "options": {},
+  "attributes": {
+    "socialIcon": {
+      "type": "enumeration",
+      "enum": [
+        "facebook",
+        "instagram",
+        "twitter",
+        "linkedin",
+        "youtube",
+        "vimeo",
+        "tiktok",
+        "pinterest",
+        "snapchat"
+      ]
+    },
+    "socialUrl": {
+      "type": "string"
+    }
+  }
+}

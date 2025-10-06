@@ -56,6 +56,34 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "mapUrl": {
+      "type": "text"
+    },
+    "contactFormSubject": {
+      "type": "string",
+      "required": true
+    },
+    "formReceiverTo": {
+      "type": "email",
+      "required": true
+    },
+    "formReceiverCC": {
+      "type": "email"
+    },
+    "formReceiverBCC": {
+      "type": "email"
+    },
+    "fromEmail": {
+      "type": "email",
+      "required": true
+    },
+    "googleMapUrl": {
+      "type": "string",
+      "required": true
+    },
+    "footerAboutUs": {
+      "type": "text"
     }
   }
 }

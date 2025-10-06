@@ -1013,6 +1013,14 @@ export interface ApiContactUsContactUs extends Schema.SingleType {
     seo: Attribute.Component<'seo.seo-infomation'>;
     slug: Attribute.UID<'api::contact-us.contact-us', 'title'> &
       Attribute.Required;
+    mapUrl: Attribute.Text;
+    contactFormSubject: Attribute.String & Attribute.Required;
+    formReceiverTo: Attribute.Email & Attribute.Required;
+    formReceiverCC: Attribute.Email;
+    formReceiverBCC: Attribute.Email;
+    fromEmail: Attribute.Email & Attribute.Required;
+    googleMapUrl: Attribute.String & Attribute.Required;
+    footerAboutUs: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1086,6 +1094,7 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     bodyText1: Attribute.Text;
     bodyHeading2: Attribute.String;
     bodyText2: Attribute.Text;
+    imageText: Attribute.DynamicZone<['layout.image', 'layout.text-image']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

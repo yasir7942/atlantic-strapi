@@ -1,5 +1,29 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface SeoSocialMedia extends Schema.Component {
+  collectionName: 'components_seo_social_medias';
+  info: {
+    displayName: 'socialMedia';
+    icon: 'magic';
+  };
+  attributes: {
+    socialIcon: Attribute.Enumeration<
+      [
+        'facebook',
+        'instagram',
+        'twitter',
+        'linkedin',
+        'youtube',
+        'vimeo',
+        'tiktok',
+        'pinterest',
+        'snapchat'
+      ]
+    >;
+    socialUrl: Attribute.String;
+  };
+}
+
 export interface SeoSeoInfomation extends Schema.Component {
   collectionName: 'components_seo_seo_infomations';
   info: {
@@ -101,11 +125,13 @@ export interface LayoutTextImage extends Schema.Component {
   info: {
     displayName: 'TextImage';
     icon: 'picture';
+    description: '';
   };
   attributes: {
     title: Attribute.String;
     description: Attribute.Blocks;
     image: Attribute.Media<'images' | 'videos'>;
+    description2: Attribute.Text;
   };
 }
 
@@ -126,10 +152,10 @@ export interface LayoutImage extends Schema.Component {
   info: {
     displayName: 'Image';
     icon: 'database';
+    description: '';
   };
   attributes: {
     image: Attribute.Media<'images'>;
-    imageWebp: Attribute.Media<'images'>;
   };
 }
 
@@ -161,6 +187,7 @@ export interface LayoutFaq extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'seo.social-media': SeoSocialMedia;
       'seo.seo-infomation': SeoSeoInfomation;
       'seo.schema-list': SeoSchemaList;
       'seo.product-schema': SeoProductSchema;
