@@ -1095,6 +1095,8 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     bodyHeading2: Attribute.String;
     bodyText2: Attribute.Text;
     imageText: Attribute.DynamicZone<['layout.image', 'layout.text-image']>;
+    infoBlock: Attribute.Component<'layout.text-image'>;
+    bodyImage: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

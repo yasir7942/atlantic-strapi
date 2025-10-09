@@ -50,6 +50,18 @@
         "layout.image",
         "layout.text-image"
       ]
+    },
+    "infoBlock": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.text-image"
+    },
+    "bodyImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
