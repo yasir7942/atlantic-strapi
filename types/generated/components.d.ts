@@ -131,7 +131,6 @@ export interface LayoutTextImage extends Schema.Component {
     title: Attribute.String;
     description: Attribute.Blocks;
     image: Attribute.Media<'images' | 'videos'>;
-    description2: Attribute.Text;
   };
 }
 

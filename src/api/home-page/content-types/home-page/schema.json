@@ -35,14 +35,14 @@
     "bodyHeading1": {
       "type": "string"
     },
-    "bodyText1": {
-      "type": "text"
-    },
     "bodyHeading2": {
       "type": "string"
     },
+    "bodyText1": {
+      "type": "blocks"
+    },
     "bodyText2": {
-      "type": "text"
+      "type": "blocks"
     },
     "imageText": {
       "type": "dynamiczone",
@@ -57,11 +57,13 @@
       "component": "layout.text-image"
     },
     "bodyImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
+    
   }
 }

@@ -64,19 +64,15 @@
       "type": "string",
       "required": true
     },
-    "formReceiverTo": {
+    "receiverTo": {
       "type": "email",
       "required": true
     },
-    "formReceiverCC": {
+    "receiverCC": {
       "type": "email"
     },
-    "formReceiverBCC": {
+    "receiverBCC": {
       "type": "email"
-    },
-    "fromEmail": {
-      "type": "email",
-      "required": true
     },
     "googleMapUrl": {
       "type": "string",
@@ -84,6 +80,17 @@
     },
     "footerAboutUs": {
       "type": "text"
+    },
+    "fromEmail": {
+      "type": "string",
+      "required": true
+    },
+    "replyTo": {
+      "type": "string",
+      "required": true
+    },
+    "llcEmail": {
+      "type": "email"
     }
   }
 }

@@ -21,9 +21,6 @@
         "images",
         "videos"
       ]
-    },
-    "description2": {
-      "type": "text"
     }
   }
 }
