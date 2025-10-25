@@ -119,6 +119,11 @@
       "relation": "oneToMany",
       "target": "api::certificate.certificate",
       "mappedBy": "product"
+    },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.faq"
     }
   }
 }

@@ -50,6 +50,11 @@
       "type": "date",
       "required": true,
       "default": "2024-05-15"
+    },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.faq"
     }
   }
 }

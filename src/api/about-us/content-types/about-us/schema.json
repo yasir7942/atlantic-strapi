@@ -60,6 +60,11 @@
       "type": "component",
       "repeatable": false,
       "component": "seo.seo-infomation"
+    },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "layout.faq"
     }
   }
 }

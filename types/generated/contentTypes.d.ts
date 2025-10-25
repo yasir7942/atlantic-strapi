@@ -811,6 +811,7 @@ export interface ApiAboutUsAboutUs extends Schema.SingleType {
     ourMission: Attribute.Component<'layout.text-image'>;
     overVisson: Attribute.Component<'layout.text-image'>;
     seo: Attribute.Component<'seo.seo-infomation'>;
+    faq: Attribute.Component<'layout.faq', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1141,6 +1142,7 @@ export interface ApiPostPost extends Schema.CollectionType {
     PostDate: Attribute.Date &
       Attribute.Required &
       Attribute.DefaultTo<'2024-05-15'>;
+    faq: Attribute.Component<'layout.faq', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1237,6 +1239,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToMany',
       'api::certificate.certificate'
     >;
+    faq: Attribute.Component<'layout.faq', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
