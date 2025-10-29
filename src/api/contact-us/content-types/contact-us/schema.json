@@ -85,10 +85,6 @@
       "type": "string",
       "required": true
     },
-    "replyTo": {
-      "type": "string",
-      "required": true
-    },
     "llcEmail": {
       "type": "email"
     }

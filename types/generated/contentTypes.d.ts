@@ -1022,7 +1022,6 @@ export interface ApiContactUsContactUs extends Schema.SingleType {
     googleMapUrl: Attribute.String & Attribute.Required;
     footerAboutUs: Attribute.Text;
     fromEmail: Attribute.String & Attribute.Required;
-    replyTo: Attribute.String & Attribute.Required;
     llcEmail: Attribute.Email;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
